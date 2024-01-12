@@ -10,6 +10,7 @@ import SwiftUI
 struct ContentView: View {
     
     @State private var isNight = false
+    
     var days = [
         WeatherDay(day: "TUE", image: "cloud.sun.fill", temperature: 74),
         WeatherDay(day: "WED", image: "sun.max.fill", temperature: 88),
@@ -17,9 +18,10 @@ struct ContentView: View {
         WeatherDay(day: "FRI", image: "sunset.fill", temperature: 60),
         WeatherDay(day: "SAT", image: "snow", temperature: 25),
     ]
+    
     var body: some View {
         ZStack {
-            BackgroundView(isNight: $isNight)
+            BackgroundView(isNight: isNight)
             VStack {
                 CityTextView(cityName: "Cairo, Egypt")
                 MainWeatherStatusView(imageName: isNight ? "moon.stars.fill" : "cloud.sun.fill", temperature: 76)
@@ -70,7 +72,7 @@ struct WeatherDayView: View {
 
 struct BackgroundView: View {
     
-    @Binding var isNight: Bool
+    var isNight: Bool
     
     var body: some View {
         LinearGradient(gradient: Gradient(colors: [
